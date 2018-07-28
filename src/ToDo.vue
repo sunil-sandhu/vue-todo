@@ -51,6 +51,7 @@ export default {
 
   methods: {
 
+      //still need to add thing here to stop this from triggering if the input field is empty. likely needs event paremeter passed to function
       createNewToDoItem() {
           this.list.push(
               {
@@ -78,7 +79,7 @@ export default {
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
     background: linear-gradient(#aeffae, #3d99ff);
-    height: 100vh;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -94,9 +95,11 @@ export default {
     text-align: center;
     border: 1px solid white;
     width: 80vw;
-    height: 80vh;
+    height: auto;
     box-shadow: 2px 3px 15px rgba(0, 0, 0, 0.5);
     background: #f6f6f6;
+    padding-bottom: 60px;
+    margin: 40px auto;
   }
 
   .ToDo-Header {
