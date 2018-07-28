@@ -16,7 +16,7 @@
 
 
         </div>
-        <input type="text" v-on:keyup.enter="createNewToDoItem"/>
+        <input type="text" v-model="toDoItem" v-on:keyup.enter="createNewToDoItem"/>
         <div class="ToDo-Add" @click="createNewToDoItem()">+</div>
       </div>
     </div>
@@ -44,68 +44,30 @@ export default {
                   'todo': 'buy milk'
               }
           ],
-          editMode: false,
+          toDoItem: '',
           logo: Logo
       }
   },
-  props: [
-
-  ],
-
-  computed: {
-
-  },
 
   methods: {
-      // this shows a way that the same could have been achieved but is a lot closer to how we did it with react
-      // createNewToDoItem() {
-      //     let newList = this.list;
-      //     let input = document.querySelector('input');
-      //     newList.push(
-      //         {
-      //             'todo': input.value
-      //         }
-      //     );
-      //     this.list = newList;
-      //     input.value = null;
-      // },
 
       createNewToDoItem() {
-          let input = document.querySelector('input');
           this.list.push(
               {
                   'id': this.list.length,
-                  'todo': input.value
+                  'todo': this.toDoItem
               }
           );
-          input.value = null;
-      },
+          this.toDoItem = '';
+      }
 
-
-      // this just simply isn't needed here in Vue
-      // because we can pass the same function to create a new to do item with the use of the keyup.enter
-      // _handleKeyPress(e) {
-      //     if (e.key === 'Enter') {
-      //         this.createNewToDoItem();
-      //     }
-      // },
-
-
-      // deleteItemFromArray(event) {
-      //     // this is now being emitted back to the parent from the child component
-      //
-      //     let array = this.list; // make a separate copy of the array
-      //     array.filter(item => item.todo !== event );
-      //     // this.list.splice(id, 1);  // remove that item from the array
-      //     console.log(array)
-      //     // this.setState({list: array}); // set new state of array with indexed item deleted
-      // },
   },
-    mounted() {
-      this.$on('delete', (event) => {
-          this.list = this.list.filter(item => item.todo !== event)
-      })
-    }
+
+  mounted() {
+    this.$on('delete', (event) => {
+        this.list = this.list.filter(item => item.todo !== event)
+    })
+  }
 }
 </script>
 
