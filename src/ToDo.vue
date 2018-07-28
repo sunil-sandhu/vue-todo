@@ -16,7 +16,7 @@
 
 
         </div>
-        <input type="text" v-model="toDoItem" v-on:keyup.enter="createNewToDoItem"/>
+        <input type="text" v-model="todo" v-on:keyup.enter="createNewToDoItem"/>
         <div class="ToDo-Add" @click="createNewToDoItem()">+</div>
       </div>
     </div>
@@ -44,7 +44,7 @@ export default {
                   'todo': 'buy milk'
               }
           ],
-          toDoItem: '',
+          todo: '',
           logo: Logo
       }
   },
@@ -56,10 +56,10 @@ export default {
           this.list.push(
               {
                   'id': this.list.length,
-                  'todo': this.toDoItem
+                  'todo': this.todo
               }
           );
-          this.toDoItem = '';
+          this.todo = '';
       }
 
   },
@@ -80,6 +80,7 @@ export default {
     font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
     background: linear-gradient(#aeffae, #3d99ff);
     height: auto;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
