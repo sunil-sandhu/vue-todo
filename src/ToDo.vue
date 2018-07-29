@@ -7,9 +7,9 @@
         <div class="ToDo-Content">
 
           <ToDoItem v-for="item in this.list"
-                    :id="item.id"
                     :todo="item.todo"
-                    :key="item.id"
+                    :key="list.indexOf(item)"
+                    :id="list.indexOf(item)"
           >
           </ToDoItem>
 
@@ -36,11 +36,9 @@ export default {
       return {
           list: [
               {
-                  'id': 0,
                   'todo': 'clean the house'
               },
               {
-                  'id': 1,
                   'todo': 'buy milk'
               }
           ],
@@ -55,7 +53,6 @@ export default {
       createNewToDoItem() {
           this.list.push(
               {
-                  'id': this.list.length,
                   'todo': this.todo
               }
           );

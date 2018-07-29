@@ -1,5 +1,5 @@
 <template>
-    <div class="ToDoItem" :key=id>
+    <div class="ToDoItem" :id="id">
         <p class="ToDoItem-Text">{{todo}}</p>
         <div class="ToDoItem-Delete" @click="deleteItem(todo)">-</div>
     </div>
