@@ -1,7 +1,7 @@
 <template>
     <div class="ToDoItem" :id="id">
         <p class="ToDoItem-Text">{{todo}}</p>
-        <div class="ToDoItem-Delete" @click="$parent.$emit('delete', todo)">-</div>
+        <div class="ToDoItem-Delete" @click="$emit('delete', todo)">-</div>
     </div>
 </template>
 

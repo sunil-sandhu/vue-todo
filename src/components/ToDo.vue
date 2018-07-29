@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="ToDo" v-on:delete="deleteToDoItem(event)">
+    <div class="ToDo">
       <img class="Logo" :src="logo" alt="Vue logo"/>
       <h1 class="ToDo-Header">Vue To Do</h1>
       <div class="ToDo-Container">
@@ -24,8 +24,7 @@
 </template>
 
 <script>
-import ToDoItem from './components/ToDoItem.vue'
-import Logo from './assets/logo.png';
+import ToDoItem from './ToDoItem.vue'
 
 export default {
   name: 'to-do',
@@ -34,34 +33,32 @@ export default {
   },
   data() {
       return {
-          list: [
-              {
-                  'todo': 'clean the house'
-              },
-              {
-                  'todo': 'buy milk'
-              }
-          ],
-          todo: '',
-          logo: Logo
+        list: [
+          {
+            'todo': 'clean the house'
+          },
+          {
+            'todo': 'buy milk'
+          }
+        ],
+        todo: '',
       }
   },
+  props: ['logo'],
 
   methods: {
 
-      //still need to add thing here to stop this from triggering if the input field is empty. likely needs event paremeter passed to function
-      createNewToDoItem() {
-          this.list.push(
-              {
-                  'todo': this.todo
-              }
-          );
-          this.todo = '';
-      },
+    //still need to add thing here to stop this from triggering if the input field is empty. likely needs event paremeter passed to function
+    createNewToDoItem() {
+      this.list.push(
+          {
+            'todo': this.todo
+          }
+      );
+      this.todo = '';
+    },
 
-      deleteToDoItem(event) {
-        this.list = this.list.filter(item => item.todo !== event)
-      }
+
 
   },
 
@@ -74,18 +71,6 @@ export default {
 </script>
 
 <style>
-
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
-    background: linear-gradient(#aeffae, #3d99ff);
-    height: auto;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 
   .Logo {
     width: 50px;
