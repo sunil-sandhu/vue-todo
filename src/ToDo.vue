@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="ToDo">
+    <div class="ToDo" v-on:delete="deleteToDoItem(event)">
       <img class="Logo" :src="logo" alt="Vue logo"/>
       <h1 class="ToDo-Header">Vue To Do</h1>
       <div class="ToDo-Container">
@@ -57,14 +57,18 @@ export default {
               }
           );
           this.todo = '';
+      },
+
+      deleteToDoItem(event) {
+        this.list = this.list.filter(item => item.todo !== event)
       }
 
   },
 
   mounted() {
-    this.$on('delete', (event) => {
-        this.list = this.list.filter(item => item.todo !== event)
-    })
+    // this.$on('delete', (event) => {
+    //
+    // })
   }
 }
 </script>
