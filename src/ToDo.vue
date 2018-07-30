@@ -5,16 +5,10 @@
       <h1 class="ToDo-Header">Vue To Do</h1>
       <div class="ToDo-Container">
         <div class="ToDo-Content">
-
-          <ToDoItem v-for="item in this.list"
-                    :todo="item.todo"
-                    :key="list.indexOf(item)"
-                    :id="list.indexOf(item)"
-          >
-          </ToDoItem>
-
-
-
+          <ToDoItem v-for="todo in list" 
+                    :todo="todo" 
+                    @delete="onDeleteItem"
+                    :key="todo.id" />
         </div>
         <input type="text" v-model="todo" v-on:keyup.enter="createNewToDoItem"/>
         <div class="ToDo-Add" @click="createNewToDoItem()">+</div>
@@ -36,10 +30,12 @@ export default {
       return {
           list: [
               {
-                  'todo': 'clean the house'
+                id: 1,
+                text: 'clean the house'
               },
               {
-                  'todo': 'buy milk'
+                id: 2,
+                text: 'buy milk'
               }
           ],
           todo: '',
@@ -48,24 +44,23 @@ export default {
   },
 
   methods: {
-
-      //still need to add thing here to stop this from triggering if the input field is empty. likely needs event paremeter passed to function
       createNewToDoItem() {
-          this.list.push(
-              {
-                  'todo': this.todo
-              }
-          );
-          this.todo = '';
+        //validate todo
+        if (!this.todo){
+          alert("Please enter a todo!")
+          return
+        }
+
+        const newId = Math.max.apply(null, this.list.map(t => t.id)) + 1
+        this.list.push({ id: newId, text: this.todo});
+        this.todo = '';
+      },
+      onDeleteItem(todo){
+        console.log("called", todo)
+        this.list = this.list.filter(item => item !== todo)
       }
 
   },
-
-  mounted() {
-    this.$on('delete', (event) => {
-        this.list = this.list.filter(item => item.todo !== event)
-    })
-  }
 }
 </script>
 
