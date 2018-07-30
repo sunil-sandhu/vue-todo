@@ -1,6 +1,6 @@
 <template>
-    <div class="ToDoItem" :id="id">
-        <p class="ToDoItem-Text">{{todo}}</p>
+    <div class="ToDoItem">
+        <p class="ToDoItem-Text">{{todo.text}}</p>
         <div class="ToDoItem-Delete" @click="deleteItem(todo)">-</div>
     </div>
 </template>
@@ -8,12 +8,10 @@
 <script>
     export default {
         name: "to-do-item",
-        props: [
-            'id', 'todo'
-        ],
+        props: ['todo'],
         methods: {
             deleteItem(todo) {
-                this.$parent.$emit('delete', todo)
+                this.$emit('delete', todo)
             }
         }
     }
