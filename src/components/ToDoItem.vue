@@ -1,7 +1,9 @@
 <template>
     <div class="ToDoItem">
         <p class="ToDoItem-Text">{{todo.text}}</p>
-        <div class="ToDoItem-Delete" @click="deleteItem(todo)">-</div>
+        <div class="ToDoItem-Delete"
+             @click="deleteItem(todo)">-
+        </div>
     </div>
 </template>
 
@@ -51,4 +53,5 @@
         margin-top: 1px;
         margin-left: 1px;
     }
+
 </style>

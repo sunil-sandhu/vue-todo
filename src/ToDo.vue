@@ -47,17 +47,16 @@ export default {
       createNewToDoItem() {
         //validate todo
         if (!this.todo){
-          alert("Please enter a todo!")
+          alert("Please enter a todo!");
           return
         }
 
-        const newId = Math.max.apply(null, this.list.map(t => t.id)) + 1
+        const newId = Math.max.apply(null, this.list.map(t => t.id)) + 1;
         this.list.push({ id: newId, text: this.todo});
         this.todo = '';
       },
       onDeleteItem(todo){
-        console.log("called", todo)
-        this.list = this.list.filter(item => item !== todo)
+        this.list = this.list.filter(item => item !== todo);
       }
 
   },
